@@ -32,7 +32,7 @@ public class Main {
         NFA_DFA ND = new NFA_DFA();
         ArrayList<Rule> RuleListOfDFA = ND.NFA_conversion(RuleListOfNFA,Value);
         for (Rule ruleOfDFA : RuleListOfDFA) {
-            System.out.println(ruleOfDFA.getTo() + " " + ruleOfDFA.getValue() + " " + ruleOfDFA.getFrom());
+            System.out.println("(q"+ruleOfDFA.getTo() + "," + ruleOfDFA.getValue() + ")=q" + ruleOfDFA.getFrom());
         }
     }
 }
