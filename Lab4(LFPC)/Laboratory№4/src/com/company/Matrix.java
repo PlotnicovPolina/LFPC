@@ -41,6 +41,7 @@ public class Matrix {
     }
 
     private void FirstRule(char[][] matrix, ArrayList <Character> sym){
+        System.out.println("First rule:");
         for(Rule rule:RuleList) {
             if (rule.getValue().length()>1){
                 int begin=0;
@@ -50,6 +51,7 @@ public class Matrix {
                     int frs=sym.indexOf(rule.getValue().charAt(begin));
                     int snd=sym.indexOf(rule.getValue().charAt(end));
                     matrix [frs][snd]='=';
+                    System.out.println(rule.getValue().charAt(begin) + "=" + rule.getValue().charAt(end));
                     begin++;
                     end++;
                 }
@@ -58,6 +60,7 @@ public class Matrix {
     }
 
     private void SecondRule(char[][] matrix, ArrayList <Character> sym){
+        System.out.println("Second rule:");
         for(Rule rule:RuleList) {
             if (rule.getValue().length() > 1) {
                 int begin=0;
@@ -74,6 +77,7 @@ public class Matrix {
                                 for (int i = 0; i < firstList.getValue().length() ; i++) {
                                     int snd= sym.indexOf(firstList.getValue().charAt(i));
                                     matrix [frs][snd]='<';
+                                    System.out.println(f + "<" + firstList.getValue().charAt(i));
                                 }
                             }
                         }
@@ -86,6 +90,7 @@ public class Matrix {
     }
 
     private void ThirdRule(char[][] matrix, ArrayList <Character> sym){
+        System.out.println("Third rule:");
         for(Rule rule:RuleList) {
             if (rule.getValue().length() > 1) {
                 int begin=0;
@@ -102,6 +107,8 @@ public class Matrix {
                                 for (int i = 0; i < lastList.getValue().length() ; i++) {
                                     int frs= sym.indexOf(lastList.getValue().charAt(i));
                                     matrix [frs][snd]='>';
+
+                                    System.out.println( lastList.getValue().charAt(i) + ">" + s);
                                 }
                             }
                         }
@@ -118,6 +125,7 @@ public class Matrix {
                                                 for (int j = 0; j < lastList.getValue().length() ; j++) {
                                                     int frs= sym.indexOf(lastList.getValue().charAt(j));
                                                     matrix [frs][snd]='>';
+                                                    System.out.println( lastList.getValue().charAt(j) + ">" + firstList.getValue().charAt(i));
                                                 }
                                             }
                                         }

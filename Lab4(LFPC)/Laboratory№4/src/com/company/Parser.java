@@ -65,7 +65,8 @@ public class Parser {
         if(!bool) result = "Word is not valuable";
         int index = input.indexOf(tmpMin);
         input.replace(index,index+tmpMin.length(),min.toString());
-        if(input.compareTo(new StringBuilder("$<S>$"))==0) {result = "Word is valuable";}
+        System.out.println(input);
+        if(input.compareTo(new StringBuilder("$<S>$"))==0) { result = "Word is valuable"; }
         else { return Parsing(input, Minimum(input));}
         return result;
     }

@@ -17,6 +17,7 @@ public class Main {
         Scanner scanner = new Scanner(file);
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
+            System.out.println(line);
             if(line.startsWith("V")){
                for(int i= line.indexOf('[')+1; i<line.length()-1;i++)
                {
@@ -36,16 +37,33 @@ public class Main {
         }
         scanner.close();
 
+        System.out.println("The words (caadbeb): ");
+        Scanner scanIn = new Scanner(System.in);
+        input = scanIn.nextLine();
+        scanIn.close();
+
         First_Last listOfFirst = new First_Last(RuleList,nonTerminalSymbols);
         FirstList = listOfFirst.FirstListCreation();
         First_Last listOfLast = new First_Last(RuleList,nonTerminalSymbols);
         LastList = listOfLast.LastListCreation();
+
+        System.out.println("First:");
+        for(Rule firstList:FirstList){
+            System.out.println(firstList.getKey()+"->"+firstList.getValue());
+        }
+
+        System.out.println("Last:");
+        for(Rule lastList:LastList){
+            System.out.println(lastList.getKey()+ "->" + lastList.getValue());
+        }
 
         ArrayList<Character> sym=new ArrayList<>();
         sym.addAll(symbols);
 
         Matrix matrix = new Matrix(RuleList,FirstList,LastList,sym);
         char[][] mainMatrix = matrix.MatrixCreation();
+
+        System.out.println("Matrix:");
         for (int i = 0; i < mainMatrix.length; i++) {
             for (int j = 0; j < mainMatrix.length; j++) {
                 System.out.print(mainMatrix[i][j]+" ");
@@ -53,13 +71,9 @@ public class Main {
             System.out.println();
         }
 
-        System.out.println("The words : ");
-        Scanner scanIn = new Scanner(System.in);
-        input = scanIn.nextLine();
-        scanIn.close();
-
         input="$"+input+"$";
+        System.out.println("Parsing:");
         Parser parser =  new Parser( RuleList, mainMatrix, sym, input);
-        System.out.println(parser.Parsing());
+        System.out.println("Result: \"" + parser.Parsing() + "\"");
     }
 }
